@@ -9,7 +9,7 @@ function toApiUrl(path) {
 }
 
 export function api(path, options = {}) {
-  return fetch(toApiUrl(path), options)
+  return fetch(toApiUrl(path), { credentials: 'include', ...options })
     .then(async (res) => {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Request failed');

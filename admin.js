@@ -39,7 +39,7 @@
       headers['Content-Type'] = 'application/json';
     }
 
-    const res = await fetch(path, Object.assign({}, options, { headers }));
+    const res = await fetch(path, Object.assign({}, options, { headers, credentials: 'include' }));
     let data = {};
     try {
       data = await res.json();
