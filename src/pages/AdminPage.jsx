@@ -27,6 +27,11 @@ export default function AdminPage() {
   const loadPosts = () => adminApi('/api/posts').then((d) => setPosts(d.posts || [])).catch(() => {});
 
   useEffect(() => {
+    const token = localStorage.getItem(ADMIN_TOKEN_KEY);
+    if (!token) {
+      setLoggedIn(false);
+      return;
+    }
     adminApi('/api/admin/me')
       .then(() => {
         setLoggedIn(true);

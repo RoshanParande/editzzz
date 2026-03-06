@@ -88,6 +88,32 @@ body {
   border-radius: 0 0 12px 12px;
 }
 
+.service-status {
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.service-status.ok {
+  border-color: #16a34a;
+}
+
+.service-status.bad {
+  border-color: #dc2626;
+}
+
+.service-status-meta {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
 .nav-left {
   display: flex;
   flex-wrap: wrap;
