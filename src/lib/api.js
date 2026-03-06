@@ -1,12 +1,24 @@
 export const ADMIN_TOKEN_KEY = 'roshan_admin_token';
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').trim();
+const FALLBACK_API_BASE_URL = 'https://editzz.onrender.com';
+
+function getApiBaseUrl() {
+  if (API_BASE_URL) {
+    return API_BASE_URL.replace(/\/$/, '');
+  }
+  if (typeof window !== 'undefined' && /\.vercel\.app$/i.test(window.location.hostname)) {
+    return FALLBACK_API_BASE_URL;
+  }
+  return '';
+}
 
 function toApiUrl(path) {
   if (/^https?:\/\//i.test(path)) return path;
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  if (!API_BASE_URL) return normalizedPath;
-  return `${API_BASE_URL}${normalizedPath}`;
+  const baseUrl = getApiBaseUrl();
+  if (!baseUrl) return normalizedPath;
+  return `${baseUrl}${normalizedPath}`;
 }
 
 export function api(path, options = {}) {
