@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ThemeToggle from '../components/ThemeToggle.jsx';
+import Seo from '../components/Seo.jsx';
 import { adminApi, api, ADMIN_TOKEN_KEY, readFileDataUrl } from '../lib/api.js';
 import { pageTargets } from '../constants/site.js';
 
@@ -55,6 +56,12 @@ export default function AdminPage() {
 
   return (
     <main className="admin-page">
+      <Seo
+        title="Admin | Roshan Editzz"
+        description="Admin panel for Roshan Editzz."
+        canonicalPath="/admin"
+        noindex
+      />
       <div className="admin-theme-bar"><ThemeToggle /></div>
 
       {!loggedIn ? (

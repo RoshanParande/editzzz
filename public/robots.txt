@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block admin pages from indexing
+Disallow: /admin
+
+Sitemap: https://editzz.vercel.app/sitemap.xml

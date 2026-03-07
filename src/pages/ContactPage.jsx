@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SiteLayout from '../components/SiteLayout.jsx';
 import { api } from '../lib/api.js';
+import Seo from '../components/Seo.jsx';
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -23,6 +24,12 @@ export default function ContactPage() {
 
   return (
     <SiteLayout>
+      <Seo
+        title="Contact Roshan Editzz"
+        description="Contact Roshan Editzz for collaborations, editing support, and website inquiries."
+        keywords="contact roshan editzz, roshanedits contact, editzz"
+        canonicalPath="/contact.html"
+      />
       <section className="contact-box">
         <h2>Contact Us</h2>
         <p>Use this form to send your message.</p>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ThemeToggle from '../components/ThemeToggle.jsx';
+import Seo from '../components/Seo.jsx';
 import { adminApi, readFileDataUrl } from '../lib/api.js';
 import { pageTargets } from '../constants/site.js';
 
@@ -33,6 +34,7 @@ export default function AdminPostEditPage() {
   if (!form) {
     return (
       <main className="admin-page">
+        <Seo title="Edit Post | Roshan Editzz Admin" description="Admin post editor." canonicalPath={`/admin/post/${id}`} noindex />
         <div className="admin-theme-bar"><ThemeToggle /></div>
         <section className="admin-panel"><p className="admin-message">{message || 'Loading...'}</p></section>
       </main>
@@ -41,6 +43,7 @@ export default function AdminPostEditPage() {
 
   return (
     <main className="admin-page">
+      <Seo title="Edit Post | Roshan Editzz Admin" description="Admin post editor." canonicalPath={`/admin/post/${id}`} noindex />
       <div className="admin-theme-bar"><ThemeToggle /></div>
       <section className="admin-panel">
         <Link className="read-card-btn" to="/admin">Back to Admin</Link>

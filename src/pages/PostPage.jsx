@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { api } from '../lib/api.js';
 import SiteLayout from '../components/SiteLayout.jsx';
+import Seo from '../components/Seo.jsx';
+import { shortenText } from '../lib/seo.js';
 
 export default function PostPage() {
   const [search] = useSearchParams();
@@ -33,6 +35,30 @@ export default function PostPage() {
 
   return (
     <SiteLayout>
+      <Seo
+        title={post ? `${post.title} | Roshan Editzz` : 'Post | Roshan Editzz'}
+        description={post ? shortenText(post.description || post.content || '', 160) : 'Read editing tutorials and resources from Roshan Editzz.'}
+        keywords={`roshanedits, roshan editzz, editzz, ${post?.pageKey || 'editing post'}`}
+        canonicalPath={post ? `/post/${post.id}` : '/post.html'}
+        imageUrl={post?.imageUrl || ''}
+        jsonLd={
+          post
+            ? {
+                '@context': 'https://schema.org',
+                '@type': 'BlogPosting',
+                headline: post.title,
+                description: shortenText(post.description || post.content || '', 200),
+                image: post.imageUrl || undefined,
+                datePublished: post.createdAt || undefined,
+                dateModified: post.updatedAt || post.createdAt || undefined,
+                author: {
+                  '@type': 'Organization',
+                  name: 'Roshan Editzz'
+                }
+              }
+            : null
+        }
+      />
       <article className="post-detail">
         {error ? <p className="feed-empty">{error}</p> : null}
         {!error && !post ? <p className="feed-empty">Loading post...</p> : null}
